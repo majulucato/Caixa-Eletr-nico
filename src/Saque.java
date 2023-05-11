@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Saque {
-    int opc, x;
+    int opc;
     double saldo;
     private double vlsaque, saqueIn;
     private double difSaldo;
