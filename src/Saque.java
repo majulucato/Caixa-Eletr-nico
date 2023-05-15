@@ -99,14 +99,12 @@ public class Saque {
                         //retornar as quantidades de cédulas
                         for(j=0; (BigDecimal.valueOf(j)).compareTo(BigDecimal.valueOf(7))<0;j++){
                             l.getQuantNdisp()[j] = l.getQuantNdisp()[j].add(saqN[s]);
-                            System.out.print(l.getQuantNdisp()[j]+ " R$"+l.ced[i]+"\n");
                             i++;
                             s++;
                         }
                         i=0;j=0;s=0;
                         for(y=0; (BigDecimal.valueOf(y)).compareTo(BigDecimal.valueOf(6))<0;y++){
                             l.getQuantMdisp()[y] = l.getQuantMdisp()[y].add(saqM[s]);
-                            System.out.print(l.getQuantMdisp()[y]+ " R$"+l.moed[x]+"\n");
                             x++;
                             s++;
                         }
