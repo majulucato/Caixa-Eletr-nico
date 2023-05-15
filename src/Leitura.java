@@ -1,28 +1,60 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Leitura {
-    int i, j, x, y;
-    double somCedMoed;
-    double[] moed= {1,0.50,0.25,0.10,0.05,0.01};
-    int[] ced = {200,100,50,20,10,5,2};
-    int[] quantNdisp = new int[7];
-    int[] quantMdisp = new int[6];
+    int i, j=0, x, y=0, r, s ;
+    private BigDecimal somCedMoed;
+    BigDecimal[] moed= {BigDecimal.valueOf(1), BigDecimal.valueOf(0.50), BigDecimal.valueOf(0.25), BigDecimal.valueOf(0.10), BigDecimal.valueOf(0.05), BigDecimal.valueOf(0.01)};
+    BigDecimal[] ced = {BigDecimal.valueOf(200), BigDecimal.valueOf(100), BigDecimal.valueOf(50), BigDecimal.valueOf(20), BigDecimal.valueOf(10), BigDecimal.valueOf(5), BigDecimal.valueOf(2)};
+    BigDecimal[] vlN = new BigDecimal[7];
+    BigDecimal[] vlM = new BigDecimal[6];
+    private BigDecimal[] quantNdisp = new BigDecimal[7];
+    private BigDecimal[] quantMdisp = new BigDecimal[6];
+    BigDecimal somaVlN, somaVlM;
 
     public void cedDispo(){
         Scanner scan = new Scanner(System.in);
         for (i=0; i<7; i++) {
-            System.out.print("Qual o valor de cédulas de R$" + ced[i] + " Disponível?\n");
-            quantNdisp[j] = (scan.nextInt());
+            System.out.print("Qual o valor de cédulas de R$" + getCed()[i] + " Disponível?\n");
+            quantNdisp[j] = (scan.nextBigDecimal());
             j++;
         }
+        i=0; j=0;
         for (x=0; x<6; x++) {
             System.out.print("Qual o valor de moedas de R$" + moed[x] + " Disponível?\n");
-            quantMdisp[y] = (scan.nextInt());
+            quantMdisp[y] = (scan.nextBigDecimal());
             y++;
         }
-        somCedMoed=quantNdisp[0]*200+quantNdisp[1]*100+quantNdisp[2]*50+quantNdisp[3]*25+quantNdisp[4]*10+quantNdisp[5]*5+ quantNdisp[6]*2+
-                quantMdisp[0]*1.00+quantMdisp[1]*0.50+quantMdisp[2]*0.25+quantMdisp[3]*0.10+quantMdisp[4]*0.05+quantMdisp[5]*0.01;
+        x=0;y=0;
+        for(r=0;r<7;r++){
+            vlN[r]= (getQuantNdisp()[j]).multiply(ced[i]);
+            i++;
+            j++;
+        }
+        i=0; j=0; r=0;
+        for(s=0;s<6;s++){
+            vlM[s]= (getQuantMdisp()[y].multiply(moed[x]));
+            x++;
+            y++;
+        }
+        x=0;y=0;s=0;
+        somaVlN = vlN[0].add(vlN[1].add(vlN[2].add(vlN[3]).add(vlN[4].add(vlN[5].add(vlN[6])))));
+        somaVlM = vlM[0].add(vlM[1].add(vlM[2].add(vlM[3]).add(vlM[4].add(vlM[5]))));
+        setSomCedMoed(somaVlN.add(somaVlM));
+    }
+    public BigDecimal getSomCedMoed() {
+        return somCedMoed;
+    }
+    public void setSomCedMoed(BigDecimal somCedMoed) {
+        this.somCedMoed = somCedMoed;
+    }
+    public BigDecimal[] getCed() {
+        return ced;
+    }
+    public BigDecimal[] getQuantNdisp() {
+        return quantNdisp;
+    }
+    public BigDecimal[] getQuantMdisp() {
+        return quantMdisp;
     }
 }
